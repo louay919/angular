@@ -1,0 +1,59 @@
+<div class="page">
+  <div class="card">
+
+    <div class="card-header">
+      <a routerLink="/suggestions" class="back-link">← Retour</a>
+      <h2>Nouvelle suggestion</h2>
+      <p class="subtitle">Partagez votre idée avec le campus</p>
+    </div>
+
+    <form [formGroup]="suggestionForm" (ngSubmit)="onSubmit()">
+
+      <div class="field">
+        <label for="title">Titre</label>
+        <input id="title" type="text" formControlName="title" placeholder="" />
+        <div class="errors" *ngIf="title.invalid && (title.dirty || title.touched)">
+          <small *ngIf="title.errors?.['required']">Le titre est obligatoire.</small>
+          <small *ngIf="title.errors?.['minlength']">Minimum 5 caractères.</small>
+          <small *ngIf="title.errors?.['pattern']">Doit commencer par une majuscule.</small>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="description">Description</label>
+        <textarea id="description" formControlName="description" placeholder="Décrivez votre suggestion en détail..."></textarea>
+        <div class="errors" *ngIf="description.invalid && (description.dirty || description.touched)">
+          <small *ngIf="description.errors?.['required']">La description est obligatoire.</small>
+          <small *ngIf="description.errors?.['minlength']">Minimum 30 caractères.</small>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="category">Catégorie</label>
+        <select id="category" formControlName="category">
+          <option value="">Sélectionner une catégorie</option>
+          <option *ngFor="let c of categories" [value]="c">{{ c }}</option>
+        </select>
+        <div class="errors" *ngIf="category.invalid && (category.dirty || category.touched)">
+          <small>La catégorie est obligatoire.</small>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>Date</label>
+          <input type="text" [value]="currentDate" readonly />
+        </div>
+        <div class="field">
+          <label>Statut</label>
+          <input type="text" value="En attente" readonly />
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="suggestionForm.invalid">
+         Soumettre la suggestion
+      </button>
+
+    </form>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="page" *ngIf="suggestion">
+
+  <a routerLink="/suggestions" class="back-link">← Retour aux suggestions</a>
+
+  <div class="card">
+
+    <div class="card-top">
+      <span class="category">{{ suggestion.category }}</span>
+      <span class="badge" [ngClass]="suggestion.status">
+        {{ suggestion.status === 'acceptee' ? 'Acceptée' : suggestion.status === 'refusee' ? 'Refusée' : 'En attente' }}
+      </span>
+    </div>
+
+    <h1 class="title">{{ suggestion.title }}</h1>
+
+    <p class="description">{{ suggestion.description }}</p>
+
+    <div class="divider"></div>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-label">Catégorie</span>
+        <span class="stat-value">{{ suggestion.category }}</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Date</span>
+        <span class="stat-value">{{ suggestion.date | date:'dd/MM/yyyy' }}</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Likes</span>
+        <span class="stat-value">👍 {{ suggestion.nbLikes }}</span>
+      </div>
+    </div>
+
+  </div>
+
+</div>

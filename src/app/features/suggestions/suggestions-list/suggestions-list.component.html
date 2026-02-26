@@ -1,0 +1,4 @@
+<div *ngFor="let suggestion of suggestions">
+  <p>{{ suggestion.title }}</p>
+  <button [routerLink]="[suggestion.id]">Details</button>
+</div>
