@@ -11,6 +11,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { NotfoundComponent } from './core/notfound/notfound.component';
 
 import { ListsuggestionComponent } from './core/list-suggestion/list-suggestion.component';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 
 @NgModule({
@@ -25,12 +26,14 @@ import { ListsuggestionComponent } from './core/list-suggestion/list-suggestion.
     BrowserModule,
     AppRoutingModule,
     FormsModule,   
-    CommonModule,  
+    CommonModule, 
+     
   ],
-  providers: [
+   providers: [
     provideClientHydration(),
-    DatePipe      
-  ],
+    provideHttpClient(withFetch()),
+  DatePipe ],
+    
   bootstrap: [AppComponent]
 })
 export class AppModule { }
